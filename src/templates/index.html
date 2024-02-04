@@ -2,16 +2,24 @@
 
 {% block content %}
 
+
     <head>
         <title>Film Review</title>
         <h1>Welcome to Film Review</h1>
     </head>
 
+    {% if session.username %}
+
+    <p>Hello {{ session.username }}!</p>
+    <a href="/logout">Log out</a>
+
+    {% else %}
+
     <body>
-        <li><a href="/signup">Sign Up</a></li>
-        <li><a href="/signin">Sign In</a></li>
+        <li><a href="/register">Register</a></li>
+        <li><a href="/login">Log In</a></li>
     </body>
 
-
+    {% endif %}
 
 {% endblock %}
