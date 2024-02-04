@@ -31,17 +31,6 @@
                     <input type="number" min="0" max="10" name="filmrating"></p>
                 <input type="submit" value="Submit">
             </form>
-            <br>
-            <br>
-            <hr>
-            {% for film in films %}
-                Film: {{ film.filmname }} <br>
-                Year: {{ film.filmyear }} <br>
-                Director: {{ film.filmdirector }} <br>
-                Genre: {{ film.filmgenre }} <br>
-                Rating: {{ film.filmrating }} <br>
-                <hr>
-            {% endfor %}
         </body>
 
     {% else %}
