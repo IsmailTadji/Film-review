@@ -17,7 +17,12 @@ db = SQLAlchemy(app)
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    sql = '''
+    SELECT id, filmname, filmyear, filmdirector, filmgenre, filmrating FROM films ORDER BY id
+    '''
+    result = db.session.execute(text(sql))
+    films = result.fetchall()
+    return render_template("index.html", films=films)
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
@@ -68,7 +73,31 @@ def logout():
     del session["username"]
     return redirect("/")
 
+@app.route("/addfilm", methods=["POST"])
+def addfilm():
 
+    filmname = request.form["filmname"]
+    filmyear = request.form["filmyear"]
+    filmdirector = request.form["filmdirector"]
+    filmgenre = request.form["filmgenre"]
+    filmrating =request.form["filmrating"]
+
+    sql = '''
+    INSERT INTO films (filmname, filmyear, filmdirector,filmgenre,filmrating) 
+    VALUES (:filmname, :filmyear, :filmdirector, :filmgenre, :filmrating)
+    '''
+    db.session.execute(text(sql), {"filmname":filmname, "filmyear":filmyear, "filmdirector":filmdirector, "filmgenre":filmgenre, "filmrating":filmrating})
+    db.session.commit()
+    return redirect("/")
+
+@app.route("/")
+def showfilms():
+    sql = '''
+    SELECT id, filmname, filmyear, filmdirector, filmgenre, filmrating FROM films ORDER BY id
+    '''
+    result = db.session.execute(text(sql))
+    films = result.fetchall()
+    return render_template("index.html", films=films)
 
 
 

@@ -9,32 +9,47 @@
     </head>
 
     {% if session.username %}
-
-    <p>Hello {{ session.username }}!</p>
-    <a href="/logout">Log out</a>
-    <br>
-    <br>
-    <br>
-    Add a film:
-    <br>
-    <br>
-    <p>Name:<br>
-        <input type="text" name="filmname"></p>
-    <p>Year:<br>
-        <input type="text" name="filmyear"></p>
-    <p>Director:<br>
-        <input type="text" name="filmdirector"></p>
-    <p>Genre:<br>
-        <input type="text" name="filmgenre"></p>
-    <p>Rating:<br>
-        <input type="number" min="0" max="10" name="filmrating">
+        <body>
+            <p>Hello {{ session.username }}!</p>
+            <a href="/logout">Log out</a>
+            <br>
+            <br>
+            <br>
+            Add a film:
+            <br>
+            <br>
+            <form action="/addfilm" method="POST">
+                <p>Name:
+                    <input type="text" name="filmname"></p>
+                <p>Year:
+                    <input type="text" name="filmyear"></p>
+                <p>Director:
+                    <input type="text" name="filmdirector"></p>
+                <p>Genre:
+                    <input type="text" name="filmgenre"></p>
+                <p>Rating:
+                    <input type="number" min="0" max="10" name="filmrating"></p>
+                <input type="submit" value="Submit">
+            </form>
+            <br>
+            <br>
+            <hr>
+            {% for film in films %}
+                Film: {{ film.filmname }} <br>
+                Year: {{ film.filmyear }} <br>
+                Director: {{ film.filmdirector }} <br>
+                Genre: {{ film.filmgenre }} <br>
+                Rating: {{ film.filmrating }} <br>
+                <hr>
+            {% endfor %}
+        </body>
 
     {% else %}
 
-    <body>
-        <li><a href="/register">Register</a></li>
-        <li><a href="/login">Log In</a></li>
-    </body>
+        <body>
+            <li><a href="/register">Register</a></li>
+            <li><a href="/login">Log In</a></li>
+        </body>
 
     {% endif %}
 
