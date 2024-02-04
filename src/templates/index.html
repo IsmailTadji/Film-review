@@ -52,5 +52,17 @@
         </body>
 
     {% endif %}
+        <br>
+        <br>
+        <hr>
+        {% for film in films %}
+        Film: {{ film.filmname }} <br>
+        Year: {{ film.filmyear }} <br>
+        Director: {{ film.filmdirector }} <br>
+        Genre: {{ film.filmgenre }} <br>
+        Rating: {{ film.filmrating }} <br>
+        <hr>
+
+{% endfor %}
 
 {% endblock %}
