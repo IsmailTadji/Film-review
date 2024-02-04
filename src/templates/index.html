@@ -12,6 +12,22 @@
 
     <p>Hello {{ session.username }}!</p>
     <a href="/logout">Log out</a>
+    <br>
+    <br>
+    <br>
+    Add a film:
+    <br>
+    <br>
+    <p>Name:<br>
+        <input type="text" name="filmname"></p>
+    <p>Year:<br>
+        <input type="text" name="filmyear"></p>
+    <p>Director:<br>
+        <input type="text" name="filmdirector"></p>
+    <p>Genre:<br>
+        <input type="text" name="filmgenre"></p>
+    <p>Rating:<br>
+        <input type="number" min="0" max="10" name="filmrating">
 
     {% else %}
 
