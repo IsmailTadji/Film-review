@@ -24,4 +24,4 @@ pip install -r ./requirements.txt
 ```psql < schema.sql```
 
 4. Run the application:
-```python3 src/app.py```
+```flask --app src/app.py run```
