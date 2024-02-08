@@ -10,7 +10,6 @@ from werkzeug.security import check_password_hash, generate_password_hash
 app = Flask(__name__)
 load_dotenv(find_dotenv())
 app.secret_key = getenv("SECRET_KEY")
-print(getenv("DATABASE_URL"))
 app.config["SQLALCHEMY_DATABASE_URI"] = getenv("DATABASE_URL")
 db = SQLAlchemy(app)
 
