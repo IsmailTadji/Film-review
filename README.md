@@ -7,13 +7,6 @@
 - User can review added films.
 - User can view other users film reviews.
 
-## Välipalautus 2 review:
-- Application UI is barebones with minimal bootstrap.
-- User is able to Register, however username and password verification is not done.
-- User is able to Log In.
-- User is able to add a film review to the application, so far its on a 0-10 rating.
-- User is able to view film ratings that were made by him and other users.
-
 ## Running the application
 - Currently the application can only be ran locally with the follwing steps:
 
