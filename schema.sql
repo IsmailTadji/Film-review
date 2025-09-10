@@ -12,3 +12,16 @@ CREATE TABLE films (
     filmgenre TEXT, 
     filmrating INTEGER
     );
+
+CREATE TABLE directors (
+    id SERIAL PRIMARY KEY,
+    director TEXT
+);
+
+CREATE TABLE ratings (
+    id SERIAL PRIMARY KEY,
+    film TEXT,
+    rating INTEGER,
+    comment TEXT,
+    user_id INTEGER REFERENCES users ON DELETE CASCADE
+);

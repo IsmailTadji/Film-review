@@ -4,8 +4,7 @@ import films
 from flask import render_template, request, session, redirect
 from sqlalchemy import text
 import users
-import films
-
+import verification
 
 
 @app.route("/")
@@ -22,8 +21,17 @@ def register():
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
-        if users.register(username, password):
-            return redirect("/")
+        password2 = request.form["password2"]
+
+        if password != password2:
+            return render_template("error.html", message="Passwords don't match")
+        if not verification.verify_username(username):
+            return render_template("error.html", message="Username must contain between 3 and 12 characters and only include letters, numbers, hyphens, and underscores.")
+        if not verification.verify_password(password):
+            return render_template("error.html", message="Password must contain atleast 8 characters, 1 upper case and 1 lower case character.")
+        if not users.register(username, password):
+            return render_template("error.html", message="User already exists")
+        return redirect("/")
 
 @app.route("/login", methods=["GET","POST"])
 def login():
@@ -37,8 +45,6 @@ def login():
         if not users.login(username, password):
             return render_template("error.html", message="Invalid credentials")
         return redirect("/")
-
-
 
 @app.route("/logout")
 def logout():
@@ -56,3 +62,4 @@ def addfilm():
 
     films.add_film(name,year,director,genre,rating)
     return redirect("/")
+

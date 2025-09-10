@@ -15,3 +15,11 @@ def add_film(name,year,director,genre,rating):
     '''
     db.session.execute(text(sql), {"filmname":name, "filmyear":year, "filmdirector":director, "filmgenre":genre, "filmrating":rating})
     db.session.commit()
+
+def add_director(name):
+    sql = '''
+    INSERT INTO directors (name) 
+    VALUES (:name)
+    '''
+    db.session.execute(text(sql), {"name":name})
+    db.session.commit()

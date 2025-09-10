@@ -6,6 +6,11 @@ from sqlalchemy.sql import text
 
 
 def register(username, password):
+    sql = "SELECT * FROM users WHERE username=:username"
+    result = db.session.execute(text(sql), {"username":username})
+    user = result.fetchone()
+    if user:
+        return False
     hash_value = generate_password_hash(password)
     sql = '''
     INSERT INTO users (username, password) 
@@ -13,6 +18,7 @@ def register(username, password):
     '''
     db.session.execute(text(sql), {"username":username, "password":hash_value})
     db.session.commit()
+
     return True
 
 def login(username, password):
